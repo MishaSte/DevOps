@@ -1,9 +1,8 @@
 #include <iostream>
 #include "FuncA.h"
-#include <iomanip>
-
 int main() {
     FuncA func;
+
 
 int n = 3;
 double x = 0.5;
