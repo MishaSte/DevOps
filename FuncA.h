@@ -3,10 +3,7 @@
 
 class FuncA {
 public:
-FuncA() {}
-virtual ~FuncA() {}
-
-double calculate(double x);
+double calculate(double x, int n);
 };
 
 #endif
