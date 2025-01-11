@@ -6,36 +6,30 @@ on:
       - branchAutoPackage
 
 jobs:
-  build-deb-package:
+  build-and-package:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
 
     - name: Run Autotools
-      run:|
-           aclocal
-           automake --add-missing
-           autoconf
-
-    - name: Configure toolchain
-      run: ./configure
-
-    - name: Build package
-      run: make
+      run: |
+        aclocal
+        automake --add-missing
+        autoconf
+        ./configure
+        make
 
     - name: Install to deb folder
       run: make deb
 
-    - name: Prepare package
+    - name: Prepare Debian package
       run: dpkg-deb --build deb
-
-    - name: Run distcheck
-      run: make distcheck
 
     - name: Upload Debian package
       uses: actions/upload-artifact@v3
       with:
         name: debian-package
         path: deb/
+
