@@ -1,4 +1,5 @@
 AUTOMAKE_OPTIONS = foreign
+
 bin_PROGRAMS = lr1
 lr1_SOURCES = main.cpp FuncA.cpp FuncA.h
 
@@ -7,3 +8,19 @@ FuncATest_SOURCES = FuncA_test.cpp FuncA.cpp FuncA.h
 TESTS = FuncATest
 
 nobase_dist_pkgdata_DATA = data/data.txt
+
+CTRL_DIR =$(CURDIR)/deb/DEBIAN
+CTRL_FILE = $(CTRL_DIR)/control
+
+.PHONY: deb
+
+deb:
+	mkdir -p $(CTRL_DIR)
+	echo "Package: lr1" > $(CTRL_FILE)
+	echo "Version: 1.0" >> $(CTRL_FILE)
+	echo "Architecture: all" >> $(CTRL_FILE)
+	echo "Maintainer: Mykhailo" >> $(CTRL_FILE)
+	echo "Description: text " >> $(CTRL_FILE)
+
+	make DESTDIR=$(CURDIR)/deb install
+

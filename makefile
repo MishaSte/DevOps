@@ -502,6 +502,8 @@ AUTOMAKE_OPTIONS = foreign
 lr1_SOURCES = main.cpp FuncA.cpp FuncA.h
 FuncATest_SOURCES = FuncA_test.cpp FuncA.cpp FuncA.h
 nobase_dist_pkgdata_DATA = data/data.txt
+CTRL_DIR = $(CURDIR)/deb/DEBIAN
+CTRL_FILE = $(CTRL_DIR)/control
 all: all-am
 
 .SUFFIXES:
@@ -1182,6 +1184,18 @@ uninstall-am: uninstall-binPROGRAMS uninstall-nobase_dist_pkgdataDATA
 
 .PRECIOUS: makefile
 
+
+.PHONY: deb
+
+deb:
+	mkdir -p $(CTRL_DIR)
+	echo "Package: lr1" > $(CTRL_FILE)
+	echo "Version: 1.0" >> $(CTRL_FILE)
+	echo "Architecture: all" >> $(CTRL_FILE)
+	echo "Maintainer: Mykhailo" >> $(CTRL_FILE)
+	echo "Description: text " >> $(CTRL_FILE)
+
+	make DESTDIR=$(CURDIR)/deb install
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

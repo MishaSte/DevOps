@@ -1,0 +1,35 @@
+name: Build and Package
+
+on:
+  push:
+    branches:
+      - branchAutoPackage
+
+jobs:
+  build-deb-package:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Configure toolchain
+      run: ./configure
+
+    - name: Build package
+      run: make
+
+    - name: Install to deb folder
+      run: make deb
+
+    - name: Prepare package
+      run: dpkg-deb --build deb
+
+    - name: Run distcheck
+      run: make distcheck
+
+    - name: Upload Debian package
+      uses: actions/upload-artifact@v3
+      with:
+        name: debian-package
+        path: deb/
