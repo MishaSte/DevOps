@@ -1,0 +1,4 @@
+AUTOMAKE_OPTIONS = foreign
+bin_PROGRAMS = lr1
+lr1_SOURCES = main.cpp FuncA.cpp FuncA.h
+nobase_dist_pkgdata_DATA = data/data.txt

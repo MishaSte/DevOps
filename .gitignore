@@ -1,2 +1,13 @@
 *.o
 
+/autom4te.cache/
+/config.log
+/config.status
+/configure
+/install-sh
+/missing
+/depcomp
+
+lr1
+
+
