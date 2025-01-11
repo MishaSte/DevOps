@@ -1,0 +1,25 @@
+name: Build and Test AutoTest
+
+on:
+  push:
+    branches:
+      - branchAutoTest
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Run Autotools
+      run: |
+        aclocal
+        automake --add-missing
+        autoconf
+        ./configure
+        make
+
+    - name: Run Tests
+      run: make check
