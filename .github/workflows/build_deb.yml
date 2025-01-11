@@ -14,7 +14,8 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Run Autotools
-      run: aclocal
+      run:|
+           aclocal
            automake --add-missing
            autoconf
 
