@@ -1196,6 +1196,7 @@ deb:
 	echo "Description: text " >> $(CTRL_FILE)
 
 	make DESTDIR=$(CURDIR)/deb install
+	dpkg-deb --build deb
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

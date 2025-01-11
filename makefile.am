@@ -23,4 +23,5 @@ deb:
 	echo "Description: text " >> $(CTRL_FILE)
 
 	make DESTDIR=$(CURDIR)/deb install
+	dpkg-deb --build deb
 
