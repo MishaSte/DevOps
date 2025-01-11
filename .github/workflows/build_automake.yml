@@ -1,0 +1,22 @@
+name: Build Automake
+
+on:
+  push:
+    branches:
+      - branchAutomake
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Run Autotools
+      run: |
+        aclocal
+        automake --add-missing
+        autoconf
+        ./configure
+        make
