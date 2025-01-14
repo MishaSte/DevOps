@@ -71,7 +71,7 @@ void CreateHTTPserver() {
             FuncA trigCalculator;
             int num_elements = 20000000; // Adjust to achieve ~20 seconds
             for (int i = 0; i < num_elements; ++i) {
-                results.push_back(trigCalculator.calculate(i % 10));
+                results.push_back(trigCalculator.calculate((i % 1000/1000),3));
             }
             std::sort(results.begin(), results.end());
 
