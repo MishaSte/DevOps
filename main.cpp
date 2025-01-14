@@ -1,13 +1,10 @@
 #include <iostream>
-#include "FuncA.h"
+#include "HTTP_Server.h"
+
 int main() {
-    FuncA func;
+    std::cout << "Starting the HTTP server..." << std::endl;
+    CreateHTTPserver();
 
-
-int n = 3;
-double x = 0.5;
-double r = func.calculate (x, n);
-std::cout << "For x = " << x << " and n = " << n << ", the result is: " << r << std::endl;
-
-return 0;
+    return 0;
 }
+

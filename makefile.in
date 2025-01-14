@@ -105,10 +105,11 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkgdatadir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_FuncATest_OBJECTS = FuncA_test.$(OBJEXT) FuncA.$(OBJEXT)
+am_FuncATest_OBJECTS = FuncA_test.$(OBJEXT) FuncA.$(OBJEXT) \
+	HTTP_Server.$(OBJEXT)
 FuncATest_OBJECTS = $(am_FuncATest_OBJECTS)
 FuncATest_LDADD = $(LDADD)
-am_lr1_OBJECTS = main.$(OBJEXT) FuncA.$(OBJEXT)
+am_lr1_OBJECTS = main.$(OBJEXT) FuncA.$(OBJEXT) HTTP_Server.$(OBJEXT)
 lr1_OBJECTS = $(am_lr1_OBJECTS)
 lr1_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -127,7 +128,7 @@ DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/FuncA.Po ./$(DEPDIR)/FuncA_test.Po \
-	./$(DEPDIR)/main.Po
+	./$(DEPDIR)/HTTP_Server.Po ./$(DEPDIR)/main.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -388,9 +389,9 @@ am__DIST_COMMON = $(srcdir)/makefile.in \
 	$(top_srcdir)/build-aux/depcomp \
 	$(top_srcdir)/build-aux/install-sh \
 	$(top_srcdir)/build-aux/missing \
-	$(top_srcdir)/build-aux/test-driver build-aux/depcomp \
-	build-aux/install-sh build-aux/missing depcomp install-sh \
-	missing
+	$(top_srcdir)/build-aux/test-driver build-aux/compile \
+	build-aux/depcomp build-aux/install-sh build-aux/missing \
+	depcomp install-sh missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -499,8 +500,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
-lr1_SOURCES = main.cpp FuncA.cpp FuncA.h
-FuncATest_SOURCES = FuncA_test.cpp FuncA.cpp FuncA.h
+lr1_SOURCES = main.cpp FuncA.cpp FuncA.h HTTP_Server.cpp HTTP_Server.h
+FuncATest_SOURCES = FuncA_test.cpp FuncA.cpp FuncA.h HTTP_Server.cpp HTTP_Server.h
 nobase_dist_pkgdata_DATA = data/data.txt
 all: all-am
 
@@ -601,6 +602,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FuncA.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FuncA_test.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/HTTP_Server.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
@@ -1091,6 +1093,7 @@ distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 		-rm -f ./$(DEPDIR)/FuncA.Po
 	-rm -f ./$(DEPDIR)/FuncA_test.Po
+	-rm -f ./$(DEPDIR)/HTTP_Server.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -1141,6 +1144,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -rf $(top_srcdir)/autom4te.cache
 		-rm -f ./$(DEPDIR)/FuncA.Po
 	-rm -f ./$(DEPDIR)/FuncA_test.Po
+	-rm -f ./$(DEPDIR)/HTTP_Server.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

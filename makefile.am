@@ -1,9 +1,9 @@
 AUTOMAKE_OPTIONS = foreign
 bin_PROGRAMS = lr1
-lr1_SOURCES = main.cpp FuncA.cpp FuncA.h
+lr1_SOURCES = main.cpp FuncA.cpp FuncA.h HTTP_Server.cpp HTTP_Server.h
 
 check_PROGRAMS = FuncATest
-FuncATest_SOURCES = FuncA_test.cpp FuncA.cpp FuncA.h
+FuncATest_SOURCES = FuncA_test.cpp FuncA.cpp FuncA.h HTTP_Server.cpp HTTP_Server.h
 TESTS = FuncATest
 
 nobase_dist_pkgdata_DATA = data/data.txt
