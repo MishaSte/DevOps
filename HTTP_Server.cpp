@@ -69,7 +69,7 @@ void CreateHTTPserver() {
             // Generate and process data
             std::vector<double> results;
             FuncA trigCalculator;
-            int num_elements = 20000000; // Adjust to achieve ~20 seconds
+            int num_elements = 180000000;
             for (int i = 0; i < num_elements; ++i) {
                 results.push_back(trigCalculator.calculate((i % 1000/1000),3));
             }
